@@ -372,7 +372,8 @@ getFilteredData(event) {
       this.EventCount= data.result.count;
       //this.eventList = data.result.Event;
       //this.eventListCount = tempEventListData.length;
-      if(this.query != ""){
+      //if(this.query != ""){
+      if (this.query != "" && event.filtersSelected.eventTime) {
         this.eventListCount = tempEventListData.length;
       } else {
         this.eventListCount = data.result.count;
