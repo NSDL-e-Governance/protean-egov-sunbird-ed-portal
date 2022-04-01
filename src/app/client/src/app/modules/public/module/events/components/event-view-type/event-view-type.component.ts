@@ -373,11 +373,15 @@ getFilteredData(event) {
       //this.eventList = data.result.Event;
       //this.eventListCount = tempEventListData.length;
       //if(this.query != ""){
-      if (this.query != "" && event.filtersSelected.eventTime) {
-        this.eventListCount = tempEventListData.length;
-      } else {
-        this.eventListCount = data.result.count;
-      }
+        if (this.query != "" && event.filtersSelected == undefined) {
+          this.eventListCount = data.result.count;        
+        } else 
+        if (this.query != "" && event.filtersSelected.eventTime) {
+          this.eventListCount = tempEventListData.length; 
+        }else {
+          this.eventListCount = data.result.count;
+        }
+      
       this.eventList = tempEventListData;
 
       this.eventList.forEach((item, index) => {
