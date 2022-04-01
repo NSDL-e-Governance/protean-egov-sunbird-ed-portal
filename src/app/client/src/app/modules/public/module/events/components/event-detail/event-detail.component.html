@@ -27,7 +27,7 @@
         *ngIf="eventItem"
         [eventDetailItem]="eventItem"
         (navToDashbord)="navToDashbord($event);"
-        (attendeeList) = "attendeeList"
+        [attendeeList] = "attendeeList"
         [isDetalPage]="true"  >
       </sb-cover-event-detail>
 
