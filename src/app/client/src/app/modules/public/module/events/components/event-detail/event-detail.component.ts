@@ -8,7 +8,7 @@ import { FrameworkService, UserService } from '@sunbird/core';
 import {ToasterService, LayoutService, COLUMN_TYPE}from '@sunbird/shared';
 import { map, tap, switchMap, skipWhile, takeUntil, catchError, startWith } from 'rxjs/operators';
 import { forkJoin, Subject, Observable, BehaviorSubject, merge, of, concat, combineLatest } from 'rxjs';
-
+// import{ attendanceList } from './attendance';
 @Component({
   selector: 'app-event-detail',
   templateUrl: './event-detail.component.html',
@@ -29,6 +29,7 @@ export class EventDetailComponent implements OnInit {
   SECOND_PANEL_LAYOUT;
   batchId: any;
   attendeeList: any;
+  // attendeeList: any = attendanceList;
   public subscription$;
   public unsubscribe = new Subject<void>();
 
@@ -109,7 +110,8 @@ getBatch(identifier){
 }
 getAttendeeList(){
   this.eventService.getAttendanceList(this.queryParams.identifier,this.queryParams.batchid).subscribe((data) => {
-    this.attendeeList = data.result.response.content;
+    this.attendeeList = data.result.content;
+
     // this.getEnrollEventUsersData(this.attendeeList);
     console.log("this.attendeeList-------",this.attendeeList);
   });
