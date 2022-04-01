@@ -28,6 +28,7 @@ export class EventDetailComponent implements OnInit {
   FIRST_PANEL_LAYOUT;
   SECOND_PANEL_LAYOUT;
   batchId: any;
+  attendeeList: any;
   public subscription$;
   public unsubscribe = new Subject<void>();
 
@@ -55,12 +56,12 @@ export class EventDetailComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.queryParams = params;
-      console.log( params);
-    this.showEventDetailPage(params.eventId);
+    this.showEventDetailPage(params.identifier);
     this.userId=this.userService.userid;
      this.setEventConfig();
      this.initConfiguration();
-     this.getBatch(params.eventId);
+     this.getBatch(params.identifier);
+     this.getAttendeeList();
   });
 }
 setEventConfig() {
@@ -105,6 +106,13 @@ getBatch(identifier){
       this.batchId = res.result.response.content[0].identifier;
       console.log("Batch Id -", this.batchId);
     });
+}
+getAttendeeList(){
+  this.eventService.getAttendanceList(this.queryParams.identifier,this.queryParams.batchid).subscribe((data) => {
+    this.attendeeList = data.result.response.content;
+    // this.getEnrollEventUsersData(this.attendeeList);
+    console.log("this.attendeeList-------",this.attendeeList);
+  });
 }
 navToDashbord(identifier){
 
