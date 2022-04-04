@@ -41,8 +41,8 @@ export class AllMyEventsComponent implements OnInit {
   myEvents: any[];
   // p: number = 1;
   // collection: any[];
-  Filterdata: any; 
-  libEventConfig:any; 
+  Filterdata: any;
+  libEventConfig:any;
   dates: any;
   EventListCount: any;
   query: any;
@@ -52,7 +52,7 @@ export class AllMyEventsComponent implements OnInit {
   yesterdayDate = this.today.getFullYear() + '-' + ('0' + (this.today.getMonth() + 1)).slice(-2) + '-' + ('0' + (this.today.getDate()-1)).slice(-2);
   tommorrowDate = this.today.getFullYear() + '-' + ('0' + (this.today.getMonth() + 1)).slice(-2) + '-' + ('0' + (this.today.getDate()+1)).slice(-2);
 
-  constructor( 
+  constructor(
      private eventListService:EventListService,
     // private eventCreateService: EventCreateService,
     // private eventDetailService: EventDetailService,
@@ -142,6 +142,7 @@ export class AllMyEventsComponent implements OnInit {
       this.Filterdata ={
         "status":[],
         "objectType": "Event",
+        "owner":this.userService.userid
       };
       this.query=event.target.value;
     }
@@ -168,7 +169,8 @@ export class AllMyEventsComponent implements OnInit {
         "status":event.filtersSelected.eventStatus,
         "eventType" :event.filtersSelected.eventType,
         "startDate":this.dates,
-        "objectType": "Event"
+        "objectType": "Event",
+        "owner":this.userService.userid
       };
     }
     else if((event.filtersSelected.eventTime) && (event.filtersSelected.eventType))
@@ -220,7 +222,8 @@ export class AllMyEventsComponent implements OnInit {
       this.Filterdata ={
         "status":event.filtersSelected.eventStatus,
         "startDate":this.dates,
-        "objectType": "Event"
+        "objectType": "Event",
+        "owner":this.userService.userid
       };
     }
     else if((event.filtersSelected.eventType) && (event.filtersSelected.eventStatus))
@@ -228,7 +231,8 @@ export class AllMyEventsComponent implements OnInit {
       this.Filterdata ={
         "status":event.filtersSelected.eventStatus,
         "eventType" :event.filtersSelected.eventType,
-        "objectType": "Event"
+        "objectType": "Event",
+        "owner":this.userService.userid
       };
     }
     else if(event.filtersSelected.eventType)
@@ -244,7 +248,8 @@ export class AllMyEventsComponent implements OnInit {
     {
         this.Filterdata ={
           "status":event.filtersSelected.eventStatus,
-          "objectType": "Event"
+          "objectType": "Event",
+          "owner":this.userService.userid
         };
     }
     else if(event.filtersSelected.eventTime)

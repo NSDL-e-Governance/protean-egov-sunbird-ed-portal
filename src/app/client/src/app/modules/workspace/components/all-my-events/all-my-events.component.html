@@ -13,7 +13,8 @@
         [isSorting] = "true"
         (sortingQuery) = "sortData($event)"> </sb-event-filter>
         <!-- <sb-event-filter *ngIf="filterConfig" [filterConfig]="filterConfig"></sb-event-filter> -->
-        <div *ngIf="eventList?.length > 0 && eventList != 'undefined'">
+
+        <div *ngIf="eventList?.length > 0 && eventList != 'undefined'" >
           <sb-event-list
               [list]="eventList"
               [layoutConfig]="layoutConfiguration"
@@ -21,7 +22,7 @@
           </sb-event-list>
         </div>
 
-             <div class="sb-g-col-xs-12 sb-g-col-md-0 sb-g-col-lg-12 sb-g-col-xxxl-12" *ngIf="EventListCount === 0">
+             <div class="sb-g-col-xs-12 sb-g-col-md-0 sb-g-col-lg-12 sb-g-col-xxxl-12" *ngIf="eventList?.length === 0 || eventList === 'undefined'" >
         <div class="no-content-container d-flex flex-jc-center relative9">
           <div class="my-48 p-16 w-100">
             <div class="d-flex flex-dc flex-jc-center flex-ai-center text-center">
