@@ -6,14 +6,14 @@
       <div class="relative9 sb-g-col-xs-12 sb-g-col-md-3 sb-g-col-lg-3 sb-g-col-xxxl-4">
         <app-workspacesidebar ></app-workspacesidebar>
       </div>
-      <div class="w-100 sb-g-col-xs-12 sb-g-col-md-9 sb-g-col-lg-9 sb-g-col-xxxl-12" >
+      <div class="w-100 sb-g-col-xs-12 sb-g-col-md-9 sb-g-col-lg-9 sb-g-col-xxxl-12 bg-none" >
         <sb-event-filter (filterChangeEvent)="getFilteredData($event)"
         *ngIf="filterConfig"
         [filterConfig]="filterConfig"
         [isSorting] = "true"
         (sortingQuery) = "sortData($event)"> </sb-event-filter>
         <!-- <sb-event-filter *ngIf="filterConfig" [filterConfig]="filterConfig"></sb-event-filter> -->
-        <div *ngIf="eventList?.length > 0 && eventList != 'undefined'" >
+        <div *ngIf="eventList?.length > 0 && eventList != 'undefined'">
           <sb-event-list
               [list]="eventList"
               [layoutConfig]="layoutConfiguration"

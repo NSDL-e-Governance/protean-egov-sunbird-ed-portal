@@ -55,6 +55,8 @@ $odeclarations: 0, 10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 100;
     opacity: var(--alpha#{$ovalue}) !important;
   }
 }
-
+.sb-color-white{
+  color: #fff;
+}
 /* colors end */
 
