@@ -131,7 +131,7 @@ navToEventDetail($event)
   this.router.navigate(['/explore-events/detail'],
     {
       queryParams: {
-        eventId: $event.identifier
+        identifier: $event.identifier
       }
     });
 
