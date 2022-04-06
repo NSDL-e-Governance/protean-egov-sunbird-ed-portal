@@ -389,9 +389,10 @@ getFilteredData(event) {
       this.eventList.forEach((item, index) => {
         // if (item.eventType != 'Offline')
         {
-          var array = JSON.parse("[" + item.venue + "]");
-          // console.log('array- ', array, 'Index = ', index);
-          this.eventList[index].venue = array[0].name;
+          if(item?.venue){
+            var array = JSON.parse("[" + item.venue + "]");
+            this.eventList[index].venue = array[0].name;
+          }
         }
       });
 
