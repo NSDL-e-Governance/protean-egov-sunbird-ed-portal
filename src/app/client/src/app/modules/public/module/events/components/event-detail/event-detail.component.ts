@@ -115,6 +115,9 @@ getBatch(identifier){
 
     // this.getEnrollEventUsersData(this.attendeeList);
     console.log("this.attendeeList-------",this.attendeeList);
+  }, (err) => {
+    console.log("this.attendeeList-------",this.attendeeList);
+    this.attendeeList = [];
   });
 }
 navToDashbord(identifier){
