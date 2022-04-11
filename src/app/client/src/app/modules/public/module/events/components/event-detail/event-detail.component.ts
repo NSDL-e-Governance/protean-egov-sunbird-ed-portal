@@ -42,7 +42,8 @@ export class EventDetailComponent implements OnInit {
     public router: Router
    ) { }
 
-  showEventDetailPage(identifier) {
+  async showEventDetailPage(identifier) {
+    await this.getAttendeeList();
     this.eventDetailService.getEvent(identifier).subscribe((data: any) => {
       this.eventItem = data.result.event;
       this.userService.getUserData(this.eventItem.owner).subscribe(data => {
@@ -62,7 +63,7 @@ export class EventDetailComponent implements OnInit {
      this.setEventConfig();
      this.initConfiguration();
      this.getBatch(params.identifier);
-     this.getAttendeeList();
+     
   });
 }
 setEventConfig() {
@@ -108,7 +109,7 @@ getBatch(identifier){
       console.log("Batch Id -", this.batchId);
     });
 }
-getAttendeeList(){
+ getAttendeeList(){
   this.eventService.getAttendanceList(this.queryParams.identifier,this.queryParams.batchid).subscribe((data) => {
     this.attendeeList = data.result.content;
 
