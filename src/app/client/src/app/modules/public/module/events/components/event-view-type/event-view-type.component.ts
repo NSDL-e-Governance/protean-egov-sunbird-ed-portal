@@ -199,6 +199,7 @@ export class EventViewTypeComponent implements OnInit {
     if($event.data.text=='ListView'){
       this.tab = 'list';
     } else {
+      this.showCalenderEvent();
       this.tab = 'calender';
     }
   }
