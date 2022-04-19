@@ -1465,6 +1465,20 @@ html[layout="joy"] .sb-prominent-filter {
 html[layout="joy"] .sb-bg-grey{
   background: #e9e8d9;
 }
+html[layout="old"] .cfe-multiselect-field-label-container {
+  border-radius: 0 !important;
+  background: none;
+  font-weight: 700;
+  font-size: .75rem;
+  width: 100%;
+  min-height: 2rem;
+  border: solid 1px #000 !important;
+  padding: 0 1.25rem;
+  box-shadow: none;
+  ul{
+    padding-left: 0 !important;
+  }
+}
 @media (max-width:768px){
   .joy-theme .vertical-view .sbt-filter-switcher {
     top: 240px !important;
