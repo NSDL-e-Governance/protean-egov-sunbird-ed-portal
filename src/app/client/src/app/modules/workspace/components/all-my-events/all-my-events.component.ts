@@ -42,8 +42,10 @@ export class AllMyEventsComponent implements OnInit {
   filterConfig: any;
   isLoading: boolean = true;
   myEvents: any[];
+  // p: number = 1;
+  // collection: any[];
   Filterdata: any;
-  libEventConfig: any;
+  libEventConfig:any;
   dates: any;
   EventListCount: any;
   query: any;
@@ -54,7 +56,7 @@ export class AllMyEventsComponent implements OnInit {
   tommorrowDate = this.today.getFullYear() + '-' + ('0' + (this.today.getMonth() + 1)).slice(-2) + '-' + ('0' + (this.today.getDate() + 1)).slice(-2);
 
   constructor(
-    private eventListService: EventListService,
+     private eventListService:EventListService,
     // private eventCreateService: EventCreateService,
     // private eventDetailService: EventDetailService,
     private router: Router,
@@ -165,7 +167,7 @@ export class AllMyEventsComponent implements OnInit {
       this.Filterdata = {
         "status": [],
         "objectType": "Event",
-        "owner": this.userService.userid
+        "owner":this.userService.userid
       };
       this.query = event.target.value;
     }

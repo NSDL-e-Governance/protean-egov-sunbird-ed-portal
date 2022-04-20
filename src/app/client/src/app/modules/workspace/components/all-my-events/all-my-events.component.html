@@ -6,12 +6,21 @@
       <app-workspacesidebar></app-workspacesidebar>
     </div>
     <div [ngClass]="SECOND_TO_PANEL_LAYOUT" class="w-100">
-      {{layoutConfiguration}}
       <div [ngClass]="layoutConfiguration ? 'sbt-page-content-area' : 'workspacesegment'">
-        <sb-event-filter (filterChangeEvent)="getFilteredData($event)" *ngIf="filterConfig" [filterConfig]="filterConfig" [isSorting]="true" (sortingQuery)="sortData($event)"> </sb-event-filter>
+
+        <sb-event-filter
+          (filterChangeEvent)="getFilteredData($event)"
+          *ngIf="filterConfig"
+          [filterConfig]="filterConfig"
+          [isSorting]="true"
+          (sortingQuery)="sortData($event)">
+        </sb-event-filter>
 
         <div *ngIf="eventList?.length > 0 && eventList != 'undefined'">
-          <sb-event-list [list]="eventList" [layoutConfig]="layoutConfiguration" (eventDetailData)="navToEventDetail($event)">
+          <sb-event-list
+            [list]="eventList"
+            [layoutConfig]="layoutConfiguration"
+            (eventDetailData)="navToEventDetail($event)">
           </sb-event-list>
         </div>
 

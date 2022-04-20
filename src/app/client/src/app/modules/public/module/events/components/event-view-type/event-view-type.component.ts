@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {EventListService, EventFilterService} from 'ngtek-event-library';
+import {EventListService, EventFilterService, EventService} from 'ngtek-event-library';
 import { EventCreateService } from 'ngtek-event-library';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash-es';
@@ -72,7 +72,7 @@ export class EventViewTypeComponent implements OnInit {
   todaysDate: any;
   tempFlag?: any;
   dataLimit:any;
-
+  eventBatchId: any;
   constructor(public eventListService: EventListService,
     public eventFilterService: EventFilterService,
     private eventCreateService: EventCreateService,
@@ -81,7 +81,8 @@ export class EventViewTypeComponent implements OnInit {
     public frameworkService:FrameworkService,
     public toasterService:ToasterService,
     public activatedRoute: ActivatedRoute,
-    public layoutService: LayoutService,) { }
+    public layoutService: LayoutService,
+    private eventService: EventService) { }
 
   ngOnInit() {
     this.initLayout();
@@ -91,6 +92,7 @@ export class EventViewTypeComponent implements OnInit {
     this.showCalenderEvent();
     this.setEventConfig();
     this.showCalenderDateData();
+    
   }
 
   initLayout() {
@@ -373,19 +375,24 @@ getFilteredData(event) {
       //this.eventList = data.result.Event;
       //this.eventListCount = tempEventListData.length;
       //if(this.query != ""){
-      if (this.query != "" && event.filtersSelected.eventTime) {
-        this.eventListCount = tempEventListData.length;
-      } else {
-        this.eventListCount = data.result.count;
-      }
+        if (this.query != "" && event.filtersSelected == undefined) {
+          this.eventListCount = data.result.count;        
+        } else 
+        if (this.query != "" && event.filtersSelected.eventTime) {
+          this.eventListCount = tempEventListData.length; 
+        }else {
+          this.eventListCount = data.result.count;
+        }
+      
       this.eventList = tempEventListData;
 
       this.eventList.forEach((item, index) => {
         // if (item.eventType != 'Offline')
         {
-          var array = JSON.parse("[" + item.venue + "]");
-          // console.log('array- ', array, 'Index = ', index);
-          this.eventList[index].venue = array[0].name;
+          if(item?.venue){
+            var array = JSON.parse("[" + item.venue + "]");
+            this.eventList[index].venue = array[0].name;
+          }
         }
       });
 
@@ -483,8 +490,22 @@ getFilteredData(event) {
      });
  }
  navToEventDetail(event){
-  this.router.navigate(['/explore-events/detail'],
-  { queryParams:  { eventId: event.identifier } });
+  // this.router.navigate(['/explore-events/detail'],
+  // { queryParams:  { eventId: event.identifier } });
+
+  let filters ={
+    "courseId": event.identifier,
+    "enrollmentType": "open"
+    };
+    this.eventService.getBatches(filters).subscribe((res) => {
+      this.eventBatchId= res.result.response.content[0].identifier;
+      this.router.navigate(['/explore-events/detail'], {
+        queryParams: {
+          identifier: event.identifier,
+          batchid: this.eventBatchId
+        }
+      });
+    });
  }
 
  showCalenderDateData(){

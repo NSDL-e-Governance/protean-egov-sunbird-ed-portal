@@ -14,11 +14,11 @@
                 <li class="mb-0" *ngIf="!hideHeaderNFooter"><a href="javascript:void(0);"
                     title="{{resourceService?.frmelmnts?.lbl?.accessibilitytskip}}" tabindex="0" (click)="skipToMainContent()"
                     class="cursor-pointer">{{resourceService?.frmelmnts?.lbl?.accessibilitytskip}}</a></li>
-                <li aria-hidden="true" *ngIf="!hideHeaderNFooter" class="mx-4 mb-0">|</li>
+                <li aria-hidden="true" *ngIf="!hideHeaderNFooter" class="padding-1 mb-0">|</li>
                 <li class="screen-reader-link"><a href="/screenreaderaccess.html" tabindex="0"
                     title="{{resourceService?.frmelmnts?.lbl?.accessibility}}">{{resourceService?.frmelmnts?.lbl?.accessibility}}</a>
                 </li>
-                <li aria-hidden="true" class="mx-4">|</li>
+                <li aria-hidden="true" class="padding-1">|</li>
                 <li class="mb-0">
                   <ng-container *ngIf="userService.loggedIn">
                     <a title="{{resourceService?.frmelmnts?.lbl?.accessibilitytext}}" tabindex="0" href="/sitemap.html?session=true"
@@ -29,7 +29,7 @@
                       class="cursor-pointer">{{resourceService?.frmelmnts?.lbl?.accessibilitytext}}</a>
                   </ng-container>
                 </li>
-                <li aria-hidden="true" class="mx-4">|</li>
+                <li aria-hidden="true" class="padding-1">|</li>
               </ul>
               <ul>
                 <li class="fontResize-container d-flex flex-ai-center pull-right" role="navigation" aria-label="Font Size">
@@ -43,7 +43,7 @@
                       title="{{resourceService?.frmelmnts?.lbl?.accessibilitytextsize}}"
                       (click)="changeFontSize('increase');" #increaseFontSize>A+</button>
                 </li>
-                <li aria-hidden="true" class="mx-4">|</li>
+                <li aria-hidden="true" class="padding-1">|</li>
                 <li><button id="dark-mode-toggle" class="dark-mode-toggle" tabindex="0"
                     title="{{resourceService?.frmelmnts?.lbl?.accessibilitytheme}}" (click)="changeTheme()" (keydown.enter)="changeTheme();" #darkModeToggle>
                     <svg width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 496">

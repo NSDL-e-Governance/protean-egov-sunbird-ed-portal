@@ -6,7 +6,7 @@
   <div class="sb-g"
       [ngClass]="layoutConfiguration ? 'sb-g sbt-container sbt-page-content relative9 z-index-9' : 'ui container mt-24'"
       *ngIf="tab == 'list'">
-      <div class="m-20 sb-g-col-xs-12 sb-g-col-md-0 sb-g-col-lg-12 sb-g-col-xxxl-12 mt-15">
+      <div class="sb-g-col-xs-12 sb-g-col-md-0 sb-g-col-lg-12 sb-g-col-xxxl-12 mt-20">
           <button class="sb-btn sb-btn-normal sb-btn-secondary mb-15" id="list" [ngClass]="[tab != 'calender' ? 'sb-btn-secondary ':'']" (click)="Openview('list')">List
               view</button>
 
@@ -49,7 +49,7 @@
               (eventDetailData)="navToEventDetail($event)">
           </sb-event-list>
     </div>
-    <div [ngClass]="SECOND_PANEL_LAYOUT" *ngIf="EventCount === 0">
+    <div [ngClass]="SECOND_PANEL_LAYOUT" *ngIf="events?.length == 0 || events == 'undefined'">
       <div class="no-content-container d-flex flex-jc-center relative9">
         <div class="my-48 p-16 w-100">
           <div class="d-flex flex-dc flex-jc-center flex-ai-center text-center">
@@ -66,24 +66,6 @@
         </div>
       </div>
     </div>
-
-    <div [ngClass]="FILTER_LIST_LAYOUT" *ngIf="eventListCount === 0 && EventCount != 0">
-      <div class="no-content-container d-flex flex-jc-center relative9">
-        <div class="my-48 p-16 w-100">
-          <div class="d-flex flex-dc flex-jc-center flex-ai-center text-center">
-            <div>
-              <img alt="{{title}}" src="./assets/images/group.svg" width="90px" height="90px">
-            </div>
-            <div tabindex="0" class="fmedium board-title pt-24 font-weight-bold">No Events Found</div>
-            <!-- <p class="fs-0-92 mt-8 text-center board-text"></p> -->
-            <!-- <div tabindex="0" *ngIf="showExploreContentButton && subTitle" class="fs-0-785 sub-title py-24">{{subTitle | interpolate:'{instance}': instance}}</div>
-            <button tabindex="0" appTelemetryInteract [telemetryInteractEdata]="exploreMoreContentEdata" *ngIf="showExploreContentButton" type="button" id="browse" class="sb-btn sb-btn-primary sb-btn-normal mb-8" (click)="handleEvent()">
-              Explore more content
-            </button> -->
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- <div [ngClass]="[layoutConfiguration ? 'sbt-container sbt-page-content relative9' : 'ui container mt-24']" *ngIf="tab == 'calender'">
@@ -96,7 +78,7 @@
     <div class=""
       [ngClass]="layoutConfiguration ? 'sb-g sbt-container sbt-page-content relative9' : 'ui container mt-24'"
       *ngIf="tab == 'calender'">
-      <div class="m-20 sb-g-col-xs-12 sb-g-col-md-0 sb-g-col-lg-12 sb-g-col-xxxl-12 mt-15">
+      <div class="sb-g-col-xs-12 sb-g-col-md-0 sb-g-col-lg-12 sb-g-col-xxxl-12 mt-15">
         <button class="sb-btn sb-btn-normal  mb-15" id="list" [ngClass]="[tab != 'calender' ? 'sb-btn-secondary ':'']" (click)="Openview('list')">List
           view</button>
         <button class="sb-btn sb-btn-normal sb-btn-secondary mb-15 ml-15" id="calendar"  [ngClass]="[tab == 'calender' ? 'sb-btn-secondary ':'']" (click)="Openview('calender')">Calender</button>
@@ -123,7 +105,7 @@
           [tempFlags]='tempFlag'></lib-event-calender>
     </div>
       <br><br><br>
-    <div class="sb-g-col-xs-12 sb-g-col-md-0 sb-g-col-lg-12 sb-g-col-xxxl-12" *ngIf="EventCount === 0">
+    <div class="sb-g-col-xs-12 sb-g-col-md-0 sb-g-col-lg-12 sb-g-col-xxxl-12" *ngIf="events?.length == 0 || events == 'undefined'">
       <div class="no-content-container d-flex flex-jc-center relative9">
         <div class="my-48 p-16 w-100">
           <div class="d-flex flex-dc flex-jc-center flex-ai-center text-center">

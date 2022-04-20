@@ -4,7 +4,6 @@
     <lib-event
       [libEventConfig]="libEventConfig">
     </lib-event>
-
     <!-- <div class="sb-g-col-xs-12 sb-g-col-md-0 sb-g-col-lg-12 sb-g-col-xxxl-12"> -->
     <div class="ui container">
       <div class="relative9">
@@ -22,13 +21,17 @@
           </button>
         </div>
       </div>
-
+    <div class="sb-bg-grey">
       <sb-cover-event-detail
-        *ngIf="eventItem"
+        *ngIf="eventItem && attendeeList"
         [eventDetailItem]="eventItem"
         (navToDashbord)="navToDashbord($event);"
+        [attendeeList] = "attendeeList"
         [isDetalPage]="true"  >
       </sb-cover-event-detail>
+    </div>
+  </div>
+
 
       <!-- <sb-join-event-button
         *ngIf="eventItem"
@@ -42,6 +45,5 @@
         (eventDetailData)="navToEventDetail($event)"
         [eventDetailItem]="eventItem" [eventCreatorInfo]="eventCreatorInformation">
       </sb-advance-event-detail>
-    </div>
   </div>
 </div>

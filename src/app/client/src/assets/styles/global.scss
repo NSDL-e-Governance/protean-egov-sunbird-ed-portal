@@ -1451,3 +1451,39 @@ html[layout="joy"] .sb-modal-content .ui.center.aligned.segment {
   left: 9px !important;;
   top: 6px !important;;
 }
+
+.padding-1 {
+  padding-left: 0.25rem!important;
+  padding-right: 0.25rem!important;
+}
+html[layout="old"] .sb-prominent-filter {
+  background: #ffffff!important;
+}
+html[layout="joy"] .sb-prominent-filter {
+  background: #f3f3e5!important;
+}
+html[layout="joy"] .sb-bg-grey{
+  background: #e9e8d9;
+}
+html[layout="old"] .cfe-multiselect-field-label-container {
+  border-radius: 0 !important;
+  background: none;
+  font-weight: 700;
+  font-size: .75rem;
+  width: 100%;
+  min-height: 2rem;
+  border: solid 1px #000 !important;
+  padding: 0 1.25rem;
+  box-shadow: none;
+  ul{
+    padding-left: 0 !important;
+  }
+}
+@media (max-width:768px){
+  .joy-theme .vertical-view .sbt-filter-switcher {
+    top: 240px !important;
+    position: inherit;
+    margin-left: 26px;
+    margin-top: 0;
+  }
+}
