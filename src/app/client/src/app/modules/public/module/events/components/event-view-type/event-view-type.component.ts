@@ -441,7 +441,7 @@ getFilteredData(event) {
   }
 
   /**
-   * For get List of events
+   * For get List of events  
    */
    showMyEventListPage()
    {
