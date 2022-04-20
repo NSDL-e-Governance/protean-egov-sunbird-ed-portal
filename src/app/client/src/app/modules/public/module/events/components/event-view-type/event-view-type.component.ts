@@ -140,8 +140,10 @@ export class EventViewTypeComponent implements OnInit {
       this.eventList = data.result?.Event;
 
       this.eventList.forEach((item, index) => {
+        if (item.venue && item.venue != 'undefined') {
         var array = JSON.parse("[" + item.venue + "]");
         this.eventList[index].venue = array[0].name;
+        }
       });
       this.isLoading = false;
 
@@ -228,6 +230,7 @@ getFilteredData(event) {
       "objectType": "Event",
     };
     this.query = event.target.value;
+    this.dataLimit = "3000";
   }
   else if ((event.filtersSelected.eventTime) && (event.filtersSelected.eventType)) {
     switch (event.filtersSelected.eventTime) {
@@ -319,7 +322,7 @@ getFilteredData(event) {
   // Loader code
   this.tab == "list" ? this.isLoading = true : this.isLoading = false;
   var tempEventListData: any = [];
-  this.eventListService.getEventList(this.Filterdata, this.query, this.sort_by).subscribe((data) => {
+  this.eventListService.getEventList(this.Filterdata, this.query, this.sort_by, this.dataLimit).subscribe((data) => {
     if (data.responseCode == "OK") {
       this.isLoading = false;
       delete this.eventList;
@@ -347,21 +350,13 @@ getFilteredData(event) {
 
             case "Upcoming":
               var timeTemp :any = dTime.toLocaleTimeString() + "+05:30";
-              //if (tempFilterData > dateTime ) {
-                //if( tempEventList[k].startDate >= this.todayDate && tempEventList[k].startTime > timeTemp){
-                if( tempEventList[k].startDate >= this.todayDate && tempEventList[k].startDate+"-"+tempEventList[k].startTime > this.todayDate+"-"+timeTemp){
+              if( tempEventList[k].startDate >= this.todayDate && tempEventList[k].startDate+"-"+tempEventList[k].startTime > this.todayDate+"-"+timeTemp){
                   tempEventListData.push(tempEventList[k]);
                 }
-                //  tempEventListData.push(tempEventList[k]);
-              //}
               break;
 
             default:
               var timeTemp :any = dTime.toLocaleTimeString() + "+05:30";
-              // if (tempFilterData > dateTime) {
-              // //if( tempEventList[k].startDate >= this.todayDate && tempEventList[k].startTime > timeTemp && tempEventList[k].endDate <= this.todayDate && tempEventList[k].endTime < timeTemp ){
-              //   tempEventListData.push(tempEventList[k]);
-              // }
               if( tempEventList[k].endDate >= this.todayDate && tempEventList[k].startDate+"-"+tempEventList[k].startTime < this.todayDate+"-"+timeTemp){
                 tempEventListData.push(tempEventList[k]);
               }
@@ -372,9 +367,6 @@ getFilteredData(event) {
         }
       }
       this.EventCount= data.result.count;
-      //this.eventList = data.result.Event;
-      //this.eventListCount = tempEventListData.length;
-      //if(this.query != ""){
         if (this.query != "" && event.filtersSelected == undefined) {
           this.eventListCount = data.result.count;        
         } else 
@@ -390,8 +382,10 @@ getFilteredData(event) {
         // if (item.eventType != 'Offline')
         {
           if(item?.venue){
+            if (item.venue && item.venue != 'undefined') {
             var array = JSON.parse("[" + item.venue + "]");
             this.eventList[index].venue = array[0].name;
+            }
           }
         }
       });
@@ -447,7 +441,7 @@ getFilteredData(event) {
   }
 
   /**
-   * For get List of events
+   * For get List of events  
    */
    showMyEventListPage()
    {
@@ -474,8 +468,10 @@ getFilteredData(event) {
               this.myEventsCount = data.result.count;
                this.myEvents = data.result.Event;
                this.myEvents.forEach((item, index) => {
+                if (item.venue && item.venue != 'undefined') {
                 var array = JSON.parse("[" + item.venue + "]");
                 this.myEvents[index].venue = array[0].name;
+                }
                });
 
              }
@@ -525,8 +521,10 @@ getFilteredData(event) {
       this.todaysCalenderEvent.forEach((item, index) => {
         // if (item.eventType != 'Offline')
         {
+          if (item.venue && item.venue != 'undefined') {
            var array = JSON.parse("[" + item.venue + "]");
            this.eventList[index].venue = array[0].name;
+          }
           // console.log('array- ', array, 'Index = ', index);
           this.todaysCalenderEvent[index].venue = array[0].name;
         }
